@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎮 AirGame - TV</title>
+  <link rel="stylesheet" href="tv.css"/>
+</head>
+<body>
+
+<!-- ═══ MENU INICIAL — Escolha de modo ═══ -->
+<div id="mode-select" class="screen active">
+  <div class="mode-wrap">
+    <div class="title">🎮 AIRGAME</div>
+    <p class="subtitle">Como você quer jogar?</p>
+    <div class="mode-cards">
+      <button class="mode-card" id="btn-tv">
+        <div class="mode-icon">📺</div>
+        <div class="mode-name">TV / Notebook</div>
+        <div class="mode-desc">Exibe a tela do jogo.<br>Celulares viram controles.</div>
+      </button>
+      <button class="mode-card" id="btn-ctrl-redirect">
+        <div class="mode-icon">📱</div>
+        <div class="mode-name">Celular / Controle</div>
+        <div class="mode-desc">Vira um controle.<br>Entre em uma sala com o ID.</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOBBY ═══ -->
+<div id="lobby" class="screen">
+  <div class="lobby-wrap">
+    <h1 class="title">🎮 AIRGAME</h1>
+    <p class="subtitle">Notebook = TV &nbsp;|&nbsp; Celular = Controle</p>
+
+    <div id="qr-box" class="qr-box">
+      <div id="qr-spinner" class="spinner">Conectando...</div>
+      <div id="qr-img"></div>
+      <p class="room-label">Sala: <strong id="room-id">...</strong></p>
+      <p class="url-label" id="ctrl-url">Aguarde...</p>
+    </div>
+
+    <div id="players-list" class="players-list"></div>
+    <p id="lobby-wait" class="dim pulse">Aguardando jogadores...</p>
+    <p id="lobby-hint" class="hint hidden">✅ Todos prontos! Iniciando em <span id="cd">3</span>...</p>
+  </div>
+</div>
+
+<!-- ═══ GAME ═══ -->
+<div id="game" class="screen">
+  <canvas id="canvas"></canvas>
+  <div id="hud">
+    <div id="hud-scores"></div>
+    <span id="hud-round" class="dim">Rodada 1</span>
+  </div>
+  <div id="gameover" class="overlay hidden">
+    <h2>🏆 Fim de Jogo!</h2>
+    <div id="final-list"></div>
+    <p class="dim">Voltando ao lobby em 8s...</p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // Menu de seleção de modo
+  document.getElementById('btn-tv').addEventListener('click', () => {
+    document.getElementById('mode-select').classList.remove('active');
+    document.getElementById('lobby').classList.add('active');
+    // Carrega tv.js dinamicamente após escolha
+    const s = document.createElement('script');
+    s.src = 'tv.js';
+    document.body.appendChild(s);
+  });
+  document.getElementById('btn-ctrl-redirect').addEventListener('click', () => {
+    window.location.href = 'controller.html';
+  });
+</script>
+</body>
+</html>
