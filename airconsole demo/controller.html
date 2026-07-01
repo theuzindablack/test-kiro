@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>🎮 Controle</title>
+  <link rel="stylesheet" href="controller.css"/>
+</head>
+<body>
+
+<!-- JOIN -->
+<div class="screen active" id="s-join">
+  <div class="card">
+    <div class="logo">🎮</div>
+    <h2>Entrar no Jogo</h2>
+    <input id="inp-name" type="text" placeholder="Seu nome..." maxlength="12" autocomplete="off"/>
+    <input id="inp-room" type="text" placeholder="ID da sala (na TV)" maxlength="6" style="text-transform:uppercase" autocomplete="off"/>
+    <button class="btn btn-join" id="btn-join">Entrar</button>
+    <p id="join-status" class="status-msg"></p>
+  </div>
+</div>
+
+<!-- WAITING -->
+<div class="screen" id="s-wait">
+  <div class="wait-card">
+    <div class="badge" id="w-badge">1</div>
+    <div class="wname" id="w-name">Jogador</div>
+    <p class="dim">Aguardando todos os jogadores...</p>
+    <button class="btn btn-ready" id="btn-ready">✅ Estou Pronto!</button>
+    <p id="ready-ok" class="ready-ok hidden">🟢 Aguardando os outros...</p>
+  </div>
+</div>
+
+<!-- CONTROLLER -->
+<div id="ctrl" class="ctrl-hidden">
+  <div class="topbar">
+    <div class="tinfo"><div class="tdot" id="tdot"></div><span id="t-name">Jogador</span></div>
+    <div class="tscore">Pontos: <strong id="t-score">0</strong></div>
+  </div>
+  <div class="shoulders">
+    <button class="sh-btn" data-a="L">L</button>
+    <button class="sh-btn" data-a="R">R</button>
+  </div>
+  <div class="gamepad">
+    <div class="side-left">
+      <div class="jbase" id="jbase"><div class="jknob" id="jknob"></div></div>
+    </div>
+    <div class="side-right">
+      <div class="abxy">
+        <button class="abtn btn-y" data-a="Y">Y</button>
+        <div class="abxy-mid">
+          <button class="abtn btn-x" data-a="X">X</button>
+          <button class="abtn btn-b" data-a="B">B</button>
+        </div>
+        <button class="abtn btn-a" data-a="A">A</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL / ERROR -->
+<div class="screen" id="s-msg">
+  <div class="card">
+    <div class="logo" id="msg-icon">😔</div>
+    <h2 id="msg-title">Sala Cheia</h2>
+    <p id="msg-body" class="dim">Máximo de 6 jogadores.</p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

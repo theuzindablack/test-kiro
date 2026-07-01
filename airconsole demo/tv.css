@@ -1,0 +1,50 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a1a;--surf:#12122a;--acc:#6c63ff;--acc2:#ff6584;--txt:#f0f0ff;--dim:#777990;--r:14px}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;width:100vw;height:100vh;overflow:hidden}
+
+/* screens */
+.screen{display:none;width:100vw;height:100vh}
+.screen.active{display:flex;align-items:center;justify-content:center}
+#game.active{display:block;position:relative}
+
+/* lobby */
+.lobby-wrap{display:flex;flex-direction:column;align-items:center;gap:22px;padding:32px;text-align:center}
+.title{font-size:clamp(2.8rem,7vw,6rem);font-weight:900;background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 28px #6c63ff66)}
+.subtitle{color:var(--dim);font-size:1.15rem}
+
+/* qr */
+.qr-box{background:var(--surf);border:2px solid #6c63ff33;border-radius:var(--r);padding:20px 28px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 0 24px #6c63ff22}
+.room-label{font-size:1.05rem;color:var(--dim)}
+.room-label strong{color:var(--acc);font-size:1.5rem;letter-spacing:4px}
+.url-label{font-size:.85rem;color:var(--acc);font-family:monospace;max-width:340px;word-break:break-all}
+.spinner{color:var(--dim);font-size:.95rem;padding:10px}
+
+/* players */
+.players-list{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:860px}
+.pcard{background:var(--surf);border-radius:var(--r);padding:12px 20px;display:flex;align-items:center;gap:10px;border:2px solid transparent;animation:pop .3s ease}
+.pcard.ready{border-color:#2ecc71;box-shadow:0 0 12px #2ecc7133}
+.pdot{width:15px;height:15px;border-radius:50%;flex-shrink:0}
+.pname{font-weight:700;font-size:1rem}
+.pstatus{font-size:.78rem;color:var(--dim)}
+.pcard.ready .pstatus{color:#2ecc71}
+
+/* misc */
+.dim{color:var(--dim)}
+.pulse{animation:pulse 2s infinite}
+.hint{color:#2ecc71;font-size:1.25rem;font-weight:700;animation:pulse 1s infinite}
+.hidden{display:none!important}
+
+/* hud */
+#hud{position:absolute;top:0;left:0;right:0;padding:10px 22px;background:#00000077;backdrop-filter:blur(8px);display:flex;justify-content:space-between;align-items:center}
+#hud-scores{display:flex;gap:18px}
+.hs{display:flex;align-items:center;gap:7px;font-weight:700;font-size:1rem}
+.hd{width:13px;height:13px;border-radius:50%}
+
+/* overlay */
+.overlay{position:absolute;inset:0;background:#000000bb;backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.overlay h2{font-size:3.5rem;font-weight:900}
+#final-list{display:flex;flex-direction:column;gap:10px;align-items:center}
+.fr{font-size:1.35rem;display:flex;align-items:center;gap:12px}
+
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
