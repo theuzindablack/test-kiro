@@ -49,6 +49,7 @@ body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans
 #hud-scores{display:flex;gap:18px}
 .hs{display:flex;align-items:center;gap:7px;font-weight:700;font-size:1rem}
 .hd{width:13px;height:13px;border-radius:50%}
+#hud-round{color:var(--acc);font-weight:800;font-size:1rem;letter-spacing:1px;background:#6c63ff18;padding:4px 12px;border-radius:8px;border:1px solid #6c63ff44}
 
 /* overlay */
 .overlay{position:absolute;inset:0;background:#000000bb;backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}

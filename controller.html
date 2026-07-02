@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- JOIN -->
+<!-- ═══ JOIN ═══ -->
 <div class="screen active" id="s-join">
   <div class="card">
     <div class="logo">🎮</div>
@@ -20,56 +20,122 @@
   </div>
 </div>
 
-<!-- MENU DE JOGOS -->
+<!-- ═══ MENU DE JOGOS ═══ -->
 <div class="screen" id="s-menu">
-  <div class="card">
-    <div class="logo" id="menu-avatar">🎮</div>
-    <h2 id="menu-greeting">Olá, Jogador!</h2>
-    <p class="dim" id="menu-room-info">Sala: ---</p>
-    <button class="btn btn-play" id="btn-play">🎮 Jogar</button>
+  <div class="menu-wrap">
+    <div class="menu-top">
+      <div class="menu-avatar" id="menu-avatar">🎮</div>
+      <div>
+        <div class="menu-name" id="menu-greeting">Jogador</div>
+        <div class="menu-room" id="menu-room-info">Sala: ---</div>
+      </div>
+    </div>
+    <p class="menu-title">Escolha o jogo</p>
+    <div class="menu-game-cards">
+      <button class="mgame-card" data-game="shooter">
+        <span class="mgame-icon">🔫</span>
+        <span class="mgame-name">Arena Shooter</span>
+        <span class="mgame-desc">Último vivo vence</span>
+      </button>
+      <button class="mgame-card" data-game="snake">
+        <span class="mgame-icon">🐍</span>
+        <span class="mgame-name">Snake Batalha</span>
+        <span class="mgame-desc">Cresça e elimine</span>
+      </button>
+      <button class="mgame-card" data-game="pong">
+        <span class="mgame-icon">🏓</span>
+        <span class="mgame-name">Pong 2v2</span>
+        <span class="mgame-desc">Marque 7 pontos</span>
+      </button>
+      <button class="mgame-card" data-game="race">
+        <span class="mgame-icon">🏎️</span>
+        <span class="mgame-name">Corrida</span>
+        <span class="mgame-desc">Desvie e sobreviva</span>
+      </button>
+    </div>
+    <div class="menu-picked hidden" id="menu-picked">
+      <span id="menu-picked-text">🎮 Aguardando escolha...</span>
+    </div>
     <button class="btn btn-leave" id="btn-leave">🚪 Sair</button>
   </div>
 </div>
 
-<!-- WAITING -->
+<!-- ═══ WAITING ═══ -->
 <div class="screen" id="s-wait">
   <div class="wait-card">
     <div class="badge" id="w-badge">1</div>
     <div class="wname" id="w-name">Jogador</div>
+    <div class="wait-game" id="wait-game-name">🎮 Aguardando jogo...</div>
     <p class="dim">Aguardando todos os jogadores...</p>
     <button class="btn btn-ready" id="btn-ready">✅ Estou Pronto!</button>
     <p id="ready-ok" class="ready-ok hidden">🟢 Aguardando os outros...</p>
+    <button class="btn-back-menu" id="btn-back-menu">← Voltar ao menu</button>
   </div>
 </div>
 
-<!-- CONTROLLER -->
-<div id="ctrl" class="ctrl-hidden">
-  <div class="topbar">
-    <div class="tinfo"><div class="tdot" id="tdot"></div><span id="t-name">Jogador</span></div>
-    <div class="tscore">Pontos: <strong id="t-score">0</strong></div>
-  </div>
-  <div class="shoulders">
-    <button class="sh-btn" data-a="L">L</button>
-    <button class="sh-btn" data-a="R">R</button>
-  </div>
+<!-- ═══ TOPBAR (compartilhada por todos os controles) ═══ -->
+<div id="ctrl-topbar" class="ctrl-topbar ctrl-hidden">
+  <div class="tinfo"><div class="tdot" id="tdot"></div><span id="t-name">Jogador</span></div>
+  <div class="tscore">Pts: <strong id="t-score">0</strong></div>
+  <button class="btn-back" id="btn-back-home" title="Menu">☰</button>
+</div>
+
+<!-- ═══ CONTROLE: SHOOTER (joystick + botão A atirar) ═══ -->
+<div id="ctrl-shooter" class="ctrl-body ctrl-hidden">
   <div class="gamepad">
     <div class="side-left">
-      <div class="jbase" id="jbase"><div class="jknob" id="jknob"></div></div>
+      <div class="jbase" id="jbase-shooter"><div class="jknob" id="jknob-shooter"></div></div>
     </div>
     <div class="side-right">
-      <div class="abxy">
-        <button class="abtn btn-y" data-a="Y">Y</button>
-        <div class="abxy-mid">
-          <button class="abtn btn-x" data-a="X">X</button>
-          <button class="abtn btn-b" data-a="B">B</button>
-        </div>
-        <button class="abtn btn-a" data-a="A">A</button>
+      <div class="shoot-btn-wrap">
+        <button class="shoot-btn" id="btn-shoot" data-a="A">🔥<br>ATIRAR</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FULL / ERROR -->
+<!-- ═══ CONTROLE: SNAKE (4 setas direcionais) ═══ -->
+<div id="ctrl-snake" class="ctrl-body ctrl-hidden">
+  <div class="dpad-wrap">
+    <div class="dpad-label">Mova a cobra</div>
+    <div class="dpad">
+      <button class="dpad-btn dpad-up"    data-dir="up">▲</button>
+      <div class="dpad-mid">
+        <button class="dpad-btn dpad-left"  data-dir="left">◀</button>
+        <div class="dpad-center"></div>
+        <button class="dpad-btn dpad-right" data-dir="right">▶</button>
+      </div>
+      <button class="dpad-btn dpad-down"  data-dir="down">▼</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTROLE: PONG (2 botões grandes cima/baixo) ═══ -->
+<div id="ctrl-pong" class="ctrl-body ctrl-hidden">
+  <div class="pong-wrap">
+    <div class="pong-label">Mova o paddle</div>
+    <div class="pong-btns">
+      <button class="pong-btn pong-up"   id="pong-up">▲<span>CIMA</span></button>
+      <button class="pong-btn pong-down" id="pong-down">▼<span>BAIXO</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTROLE: CORRIDA (joystick horizontal / volante) ═══ -->
+<div id="ctrl-race" class="ctrl-body ctrl-hidden">
+  <div class="race-wrap">
+    <div class="race-label">Vire o carro</div>
+    <div class="race-steer">
+      <div class="jbase" id="jbase-race"><div class="jknob" id="jknob-race"></div></div>
+    </div>
+    <div class="race-arrows">
+      <div class="race-arrow" id="race-arrow-left">◀</div>
+      <div class="race-arrow" id="race-arrow-right">▶</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MENSAGEM (erro/fim) ═══ -->
 <div class="screen" id="s-msg">
   <div class="card">
     <div class="logo" id="msg-icon">😔</div>

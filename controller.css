@@ -1,0 +1,128 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a1a;--surf:#12122a;--acc:#6c63ff;--acc2:#ff6584;--txt:#f0f0ff;--dim:#777990}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,sans-serif;
+  width:100vw;height:100dvh;overflow:hidden;touch-action:none;
+  user-select:none;-webkit-user-select:none;display:flex;flex-direction:column}
+
+/* ── Telas ── */
+.screen{display:none;width:100%;flex:1;align-items:center;justify-content:center;flex-direction:column;gap:18px}
+.screen.active{display:flex}
+.ctrl-hidden{display:none!important}
+.ctrl-visible{display:flex!important}
+.hidden{display:none!important}
+
+/* ── Card (join / mensagem) ── */
+.card{background:var(--surf);border-radius:20px;padding:36px 26px;width:90%;max-width:360px;
+  display:flex;flex-direction:column;align-items:center;gap:18px;
+  border:1px solid #6c63ff33;box-shadow:0 0 30px #6c63ff18}
+.logo{font-size:3rem}
+h2{font-size:1.7rem;font-weight:800}
+input{width:100%;padding:14px;border-radius:10px;border:2px solid #6c63ff44;
+  background:#ffffff08;color:var(--txt);font-size:1.1rem;text-align:center;outline:none;transition:border .2s}
+input:focus{border-color:var(--acc)}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:1.1rem;
+  font-weight:700;cursor:pointer;transition:transform .1s,opacity .1s;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.97);opacity:.85}
+.btn-join {background:linear-gradient(135deg,#6c63ff,#ff6584);color:#fff}
+.btn-ready{background:#2ecc71;color:#fff}
+.btn-leave{background:#1e1e38;color:var(--dim);border:2px solid #ffffff14;margin-top:4px}
+.btn-leave:active{color:var(--txt);border-color:#e74c3c}
+.status-msg{font-size:.9rem;min-height:1.2rem;color:#e74c3c}
+.dim{color:var(--dim);font-size:.95rem}
+
+/* ── Menu de jogos ── */
+.menu-wrap{display:flex;flex-direction:column;gap:12px;width:100%;height:100%;padding:16px;overflow-y:auto}
+.menu-top{display:flex;align-items:center;gap:12px;padding:4px 0 6px}
+.menu-avatar{width:46px;height:46px;border-radius:50%;border:3px solid var(--acc);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.menu-name{font-size:1.1rem;font-weight:800}
+.menu-room{font-size:.8rem;color:var(--dim)}
+.menu-title{font-size:.9rem;font-weight:700;color:var(--dim);text-align:center;text-transform:uppercase;letter-spacing:2px}
+.menu-game-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mgame-card{background:var(--surf);border:2px solid #6c63ff22;border-radius:14px;
+  padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;
+  cursor:pointer;color:var(--txt);transition:border-color .15s,box-shadow .15s;
+  -webkit-tap-highlight-color:transparent}
+.mgame-card:active{transform:scale(.93)}
+.mgame-card.selected{border-color:var(--acc);box-shadow:0 0 16px #6c63ff55;background:#6c63ff15}
+.mgame-icon{font-size:2rem;line-height:1}
+.mgame-name{font-size:.9rem;font-weight:800}
+.mgame-desc{font-size:.72rem;color:var(--dim)}
+.menu-picked{background:#2ecc7118;border:1px solid #2ecc7144;border-radius:10px;
+  padding:9px 12px;font-size:.85rem;font-weight:700;color:#2ecc71;text-align:center}
+
+/* ── Waiting ── */
+.wait-card{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:32px 24px}
+.badge{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:2rem;font-weight:900;border:4px solid}
+.wname{font-size:1.6rem;font-weight:800}
+.wait-game{background:#6c63ff22;border:1px solid #6c63ff44;border-radius:10px;
+  padding:7px 16px;font-size:.95rem;font-weight:700;color:var(--acc)}
+.ready-ok{color:#2ecc71;font-weight:700}
+.btn-back-menu{background:none;border:none;color:var(--dim);font-size:.9rem;
+  cursor:pointer;padding:6px 10px;text-decoration:underline;-webkit-tap-highlight-color:transparent}
+
+/* ── Topbar (controles in-game) ── */
+.ctrl-topbar{height:48px;background:#ffffff08;border-bottom:1px solid #ffffff0f;
+  align-items:center;justify-content:space-between;padding:0 14px;flex-shrink:0;width:100%}
+.tinfo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.95rem}
+.tdot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.tscore{color:var(--dim);font-size:.85rem}
+.btn-back{background:none;border:none;font-size:1.5rem;cursor:pointer;padding:4px 8px;
+  border-radius:8px;color:var(--txt);transition:background .15s;-webkit-tap-highlight-color:transparent}
+.btn-back:active{background:#ffffff18}
+
+/* ── Corpo dos controles ── */
+.ctrl-body{flex:1;flex-direction:column;width:100%;min-height:0}
+
+/* ── Joystick (shooter + corrida) ── */
+.gamepad{flex:1;display:grid;grid-template-columns:1fr 1fr;height:100%}
+.side-left,.side-right{display:flex;align-items:center;justify-content:center}
+.jbase{width:140px;height:140px;border-radius:50%;background:#ffffff08;
+  border:3px solid #ffffff18;position:relative;touch-action:none}
+.jknob{width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#6c63ff,#9b8fff);
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  box-shadow:0 4px 18px #6c63ff66;pointer-events:none}
+
+/* ── Shooter: botão atirar ── */
+.shoot-btn-wrap{display:flex;align-items:center;justify-content:center}
+.shoot-btn{width:140px;height:140px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,#e74c3c,#ff6584);color:#fff;
+  font-size:1.3rem;font-weight:900;line-height:1.3;cursor:pointer;
+  box-shadow:0 6px 24px #e74c3c66;transition:transform .08s,opacity .08s;
+  -webkit-tap-highlight-color:transparent}
+.shoot-btn.pressed,.shoot-btn:active{transform:scale(.88);opacity:.8}
+
+/* ── Snake: D-pad ── */
+.dpad-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.dpad-label{font-size:1rem;color:var(--dim);font-weight:700;letter-spacing:1px}
+.dpad{display:flex;flex-direction:column;align-items:center;gap:6px}
+.dpad-mid{display:flex;align-items:center;gap:6px}
+.dpad-center{width:72px;height:72px;border-radius:12px;background:#ffffff06;border:2px solid #ffffff10}
+.dpad-btn{width:72px;height:72px;border-radius:14px;border:2px solid #6c63ff33;
+  background:var(--surf);color:var(--txt);font-size:1.8rem;font-weight:900;cursor:pointer;
+  box-shadow:0 4px 12px #0004;transition:transform .08s;-webkit-tap-highlight-color:transparent}
+.dpad-btn.pressed,.dpad-btn:active{background:#6c63ff44;border-color:var(--acc);transform:scale(.9)}
+
+/* ── Pong: botões cima/baixo ── */
+.pong-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.pong-label{font-size:1rem;color:var(--dim);font-weight:700;letter-spacing:1px}
+.pong-btns{display:flex;flex-direction:column;gap:16px;width:100%;padding:0 24px}
+.pong-btn{width:100%;height:110px;border-radius:20px;border:none;
+  font-size:2.2rem;font-weight:900;color:#fff;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  box-shadow:0 6px 20px #0005;transition:transform .08s,opacity .08s;
+  -webkit-tap-highlight-color:transparent}
+.pong-btn span{font-size:.9rem;font-weight:700;opacity:.8}
+.pong-btn.pressed,.pong-btn:active{transform:scale(.95);opacity:.85}
+.pong-up  {background:linear-gradient(135deg,#3498db,#6c63ff)}
+.pong-down{background:linear-gradient(135deg,#e74c3c,#ff6584)}
+
+/* ── Corrida: volante ── */
+.race-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.race-label{font-size:1rem;color:var(--dim);font-weight:700;letter-spacing:1px}
+.race-steer{display:flex;align-items:center;justify-content:center}
+.race-arrows{display:flex;gap:60px;font-size:2rem}
+.race-arrow{color:#ffffff20;font-size:2.5rem;transition:color .1s,transform .1s}
+.race-arrow.active{color:var(--acc);transform:scale(1.3)}

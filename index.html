@@ -28,11 +28,11 @@
   </div>
 </div>
 
-<!-- ═══ LOBBY ═══ -->
+<!-- ═══ LOBBY ═══ — TV fica aqui esperando, jogo é escolhido pelo celular -->
 <div id="lobby" class="screen">
   <div class="lobby-wrap">
     <h1 class="title">🎮 AIRGAME</h1>
-    <p class="subtitle">Notebook = TV &nbsp;|&nbsp; Celular = Controle</p>
+    <p class="subtitle" id="lobby-game-name">Escaneie o QR ou use o ID abaixo</p>
 
     <div id="qr-box" class="qr-box">
       <div id="qr-spinner" class="spinner">Conectando...</div>
@@ -64,11 +64,10 @@
 <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-  // Menu de seleção de modo
+  // TV: clica → vai direto pro lobby e carrega tv.js
   document.getElementById('btn-tv').addEventListener('click', () => {
     document.getElementById('mode-select').classList.remove('active');
     document.getElementById('lobby').classList.add('active');
-    // Carrega tv.js dinamicamente após escolha
     const s = document.createElement('script');
     s.src = 'tv.js';
     document.body.appendChild(s);
